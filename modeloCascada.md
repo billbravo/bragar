@@ -1,0 +1,8 @@
+# Dificultades de la metodología de desarrollo en cascada
+Waterfall como metodología de desarrollo de software, tiene ventajas como a su vez una serie de limitaciones que podemos observar en el proyecto y en su futura escalabilidad.
+
+La principal limitación del proyecto es la adaptabilidad al cambio, el  uso de hojas de Excel como "base de datos" per se ya nos limita a escalar el proyecto porque no están diseñadas ni para manejar grandes volúmenes de datos ni para brindar su seguridad, obviando otras tecnologias mucho más eficientes (conocemos que la decisión fue por la facilidad de explicación del material); sino que también, el uso de la metodología waterfall nos obliga retroceder a etapas iniciales para cambios no previstos desde el inicio; rehacer etapas como análisis, diseño y pruebas conllevan a gastos imprevistos que se hubieran podido evitar con la etapas iterativas de las metodologías agiles.
+
+Una segunda limitación es la falta de comunicación y los tiempos de espera en las partes que componen el proyecto. En esta metodología debe realizarse primero toda la parte del backend para empezar a desarrollarse el frontend, ocasionando que si hay cambios en el backend deba rehacerse partes del frontend y denotando el entorpecimiento de la colaboración entre los equipos. Por el contrario, la forma en que se constituyen las metodologías agiles nos permiten desarrollar ambas partes del software colaborativa y simultáneamente. 
+
+Debido al tamaño real del proyecto no percibimos en gran medida estas limitaciones y consideramos que se pudo hacer fácilmente, pero en proyectos reales salvo en casos específicos, creemos que está metodología está obsoleta frente a las metodologías agiles.
