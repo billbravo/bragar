@@ -11,7 +11,15 @@ def listarProductos ():
     print(tabulate(Clientes, headers=headers, tablefmt="rounded_grid"))
 
 def consultarProducto ():
-    print("Escogiste la opción de consultar producto.")
+    
+    ID = input("Ingrese el ID del producto que desea consultar: ")
+    producto = Cliente.consultar_cliente(ID)
+
+    if producto == None:
+        print(f"Producto {ID} no encontrado.")
+        return
+
+    print(tabulate([producto[1:]], headers=headers, tablefmt="rounded_grid"))
 
 def mostrarMenuProducto ():
     separador = "---------------------------------------"
