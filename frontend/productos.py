@@ -1,7 +1,14 @@
 from utils.terminal import limpiar
+import backend.cliente as Cliente
+from tabulate import tabulate
+
+headers = ["ID","Nombre","Precio","Cantidad"]
 
 def listarProductos ():
     print("Escogiste la opción de listar productos.")
+
+    Clientes = Cliente.listar_clientes()
+    print(tabulate(Clientes, headers=headers, tablefmt="rounded_grid"))
 
 def consultarProducto ():
     print("Escogiste la opción de consultar producto.")
