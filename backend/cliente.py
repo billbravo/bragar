@@ -34,16 +34,18 @@ def consultar_cliente(documento):
   else:
     return None
 
-def crearProducto (documento, Nombre,Celular,Ciudad):
+def crearProducto (documento, nombre,celular,ciudad):
   if consultar_cliente(documento) != None:
     print(f"El producto con ID {documento} ya existe.")
     return False
   
-  cliente= (documento, Nombre,Celular,Ciudad)
+  cliente= (documento,nombre,celular,ciudad)
 
   hoja.append(cliente)
 
   guardar_hoja(hoja)
+
+  return True
 
 def eliminarProducto(documento):
   cliente = consultar_cliente(documento)

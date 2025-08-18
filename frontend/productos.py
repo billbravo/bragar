@@ -33,7 +33,7 @@ def agregarProducto():
     nuevo_producto = solicitarProducto()
     producto_creado = Cliente.crearProducto(*nuevo_producto)
 
-    if nuevo_producto:
+    if producto_creado:
         print("Producto creado exitosamente.")
     else:
         print("Error al crear el producto. Verifique los datos e intente nuevamente.")
