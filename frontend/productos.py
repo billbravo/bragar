@@ -4,6 +4,14 @@ from tabulate import tabulate
 
 headers = ["ID","Nombre","Precio","Cantidad"]
 
+def solicitarProducto():
+    nombre = input("Ingrese el nombre del producto: ")
+    documento = input(f"Ingrese el ID del producto {nombre}: ")
+    celular = input(f"Ingrese el precio del producto {nombre}: ")
+    ciudad = input(f"Ingrese la cantidad del producto {nombre}: ")
+
+    return(documento, nombre, celular, ciudad)
+
 def listarProductos ():
     print("Escogiste la opción de listar productos.")
 
@@ -21,23 +29,43 @@ def consultarProducto ():
 
     print(tabulate([producto[1:]], headers=headers, tablefmt="rounded_grid"))
 
+def agregarProducto():
+    nuevo_producto = solicitarProducto()
+    producto_creado = Cliente.crearProducto(*nuevo_producto)
+
+    if nuevo_producto:
+        print("Producto creado exitosamente.")
+    else:
+        print("Error al crear el producto. Verifique los datos e intente nuevamente.")
+
+def eliminarProducto():
+    documento = input("Ingrese el ID del producto que desea eliminar: ")
+    producto_eliminado = Cliente.eliminarProducto(documento)
+
+    if producto_eliminado:
+        print(f"Producto {documento} eliminado exitosamente.")
+    else:
+        print(f"Producto {documento} no encontrado o no se pudo eliminar.")
+
 def mostrarMenuProducto ():
     separador = "---------------------------------------"
     bienvenida = "USUARIO"
     opciones = {
         "1": listarProductos,
         "2": consultarProducto,
+        "3": agregarProducto,
+        "4": eliminarProducto
     }
     solicitud= "Ingrese una opción: "
     salida = False
 
     while True:
-        menu = f"{bienvenida if salida == False else separador}\n1.Listar Productos\n2.Consultar Producto\n3.Salir"
+        menu = f"{bienvenida if salida == False else separador}\n1.Listar Productos\n2.Consultar Producto\n3.Agregar Producto\n4.Eliminar Producto\n5.Salir"
         print(menu)
         opcion = input(solicitud)
         salida = False
 
-        if opcion == "3":
+        if opcion == "5":
             limpiar()
             break
 
