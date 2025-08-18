@@ -1,6 +1,4 @@
-from backend.cliente import listar_clientes
-from frontend.productos import mostrarMenuProducto
+from backend.cliente import crearProducto, eliminarProducto
 
-
-
-mostrarMenuProducto()
+crearProducto("12345", "Producto A", "1000", "10")
+eliminarProducto("1101")
