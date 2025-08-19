@@ -1,3 +1,3 @@
-from frontend.productos import mostrarMenuProducto
+from frontend.productos import mostrar_menu_productos
 
-mostrarMenuProducto()
+mostrar_menu_productos()
