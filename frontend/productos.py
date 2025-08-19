@@ -1,71 +1,86 @@
 from utils.terminal import limpiar
-import backend.cliente as Cliente
+import backend.producto as backend
 from tabulate import tabulate
 
 headers = ["ID","Nombre","Precio","Cantidad"]
 
-def solicitarProducto():
+
+def solicitar_producto():
     nombre = input("Ingrese el nombre del producto: ")
-    documento = input(f"Ingrese el ID del producto {nombre}: ")
-    celular = input(f"Ingrese el precio del producto {nombre}: ")
-    ciudad = input(f"Ingrese la cantidad del producto {nombre}: ")
+    identificador = input(f"Ingrese el ID del producto {nombre}: ")
+    precio = input(f"Ingrese el precio del producto {nombre}: ")
+    cantidad = input(f"Ingrese la cantidad del producto {nombre}: ")
 
-    return(documento, nombre, celular, ciudad)
+    return(identificador, nombre, precio, cantidad)
 
-def listarProductos ():
+
+def listar_productos ():
     print("Escogiste la opción de listar productos.")
+    productos = backend.listar_productos()
+    print(tabulate(productos, headers=headers, tablefmt="rounded_grid"))
 
-    Clientes = Cliente.listar_clientes()
-    print(tabulate(Clientes, headers=headers, tablefmt="rounded_grid"))
 
-def consultarProducto ():
-    
-    ID = input("Ingrese el ID del producto que desea consultar: ")
-    producto = Cliente.consultar_cliente(ID)
+def consultar_producto ():
+    identificador = input("Ingrese el ID del producto que desea consultar: ")
+    producto = backend.consultar_producto(identificador)
 
     if producto == None:
-        print(f"Producto {ID} no encontrado.")
+        print(f"Producto {identificador} no encontrado.")
         return
 
     print(tabulate([producto[1:]], headers=headers, tablefmt="rounded_grid"))
 
-def agregarProducto():
-    nuevo_producto = solicitarProducto()
-    producto_creado = Cliente.crearProducto(*nuevo_producto)
+
+def agregar_producto():
+    nuevo_producto = solicitar_producto()
+    producto_creado = backend.crear_producto(*nuevo_producto)
 
     if producto_creado:
         print("Producto creado exitosamente.")
     else:
         print("Error al crear el producto. Verifique los datos e intente nuevamente.")
 
-def eliminarProducto():
-    documento = input("Ingrese el ID del producto que desea eliminar: ")
-    producto_eliminado = Cliente.eliminarProducto(documento)
+
+def eliminar_producto():
+    identificador = input("Ingrese el ID del producto que desea eliminar: ")
+    producto_eliminado = backend.eliminar_producto(identificador)
 
     if producto_eliminado:
-        print(f"Producto {documento} eliminado exitosamente.")
+        print(f"Producto {identificador} eliminado exitosamente.")
     else:
-        print(f"Producto {documento} no encontrado o no se pudo eliminar.")
+        print(f"Producto {identificador} no encontrado o no se pudo eliminar.")
 
-def mostrarMenuProducto ():
+
+def actualizar_producto():
+    nuevo_producto = solicitar_producto()
+    producto_actualizado = backend.actualizar_producto(*nuevo_producto)
+    
+    if producto_actualizado:
+        print(f"Producto {nuevo_producto[0]} actualizado exitosamente.")
+    else:
+        print(f"Producto {nuevo_producto[0]} no encontrado o no se pudo actualizar.")
+
+
+def mostrar_menu_productos():
     separador = "---------------------------------------"
     bienvenida = "USUARIO"
     opciones = {
-        "1": listarProductos,
-        "2": consultarProducto,
-        "3": agregarProducto,
-        "4": eliminarProducto
+        "1": listar_productos,
+        "2": consultar_producto,
+        "3": agregar_producto,
+        "4": eliminar_producto,
+        "5": actualizar_producto
     }
     solicitud= "Ingrese una opción: "
     salida = False
 
     while True:
-        menu = f"{bienvenida if salida == False else separador}\n1.Listar Productos\n2.Consultar Producto\n3.Agregar Producto\n4.Eliminar Producto\n5.Salir"
+        menu = f"{bienvenida if salida == False else separador}\n1.Listar Productos\n2.Consultar Producto\n3.Agregar Producto\n4.Eliminar Producto\n5.Actualizar Producto\n6.Salir"
         print(menu)
         opcion = input(solicitud)
         salida = False
 
-        if opcion == "5":
+        if opcion == "6":
             limpiar()
             break
 
@@ -76,7 +91,7 @@ def mostrarMenuProducto ():
             opciones.get(opcion)()   
 
         else:   
-            solicitud = "Opción no válida, intente de nuevo: "
+            solicitud = "Opción no válida. Intente de nuevo: "
             limpiar()
 
 
